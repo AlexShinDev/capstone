@@ -1,1 +1,22 @@
-<h1>Hi!</h1>
+<h1>Article App</h1>
+<% if current_user %>
+  <h2><%= current_user.email %></h2>
+<% end %>
+<div class="bib">
+  <h4>Bibliography</h4>
+  <h5><%= @bibliography %></h2>
+</div>
+<% @article.each do |article| %>
+  <h2>url: <%= article.url %></h2>
+  <h2>User: <%= article.user_id %></h2>
+  <h2>Title: <%= article.article_title %></h2>
+  <h2>Publisher: <%= article.publisher %></h2>
+  <h2>Date Published: <%= article.date_published %></h2>
+  <h2>Documentation: <%= article.medium %></h2>
+  <h2>Author: <%= article.author %></h2>
+  <h2>Date Accessed: <%= article.created_at %></h2>
+  <h2>Article Content: <%= article.content %></h2>
+<% end  %>
+
+
+
