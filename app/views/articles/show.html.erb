@@ -1,8 +1,6 @@
-<div class="bib">
-  <h4>Bibliography</h4>
-  <h5><%= @article.generatebib %></h2>
-</div>
+<h3><a href="<%= @article.url %>"><%= @article.article_title %></a></h3>
 
-<div class="art_content">
+<%= link_to "Save Article", "/articles", method: :post, class: "btn btn-primary"%>
+<div>
   <p><%= @article.content %></p>
 </div>

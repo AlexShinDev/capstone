@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get '/articles' => 'articles#index'
   get '/articles' => 'articles#new'
   post '/articles' => 'articles#create'
-  get '/articles/:id' => 'articles#show'
+  get '/articles/:article_title' => 'articles#show'
+
+  get 'highlights' => 'highlights#index'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
