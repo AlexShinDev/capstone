@@ -5,23 +5,23 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.all
+    @articles = Article.where(user_id: current_user.id)
   end
 
   def create
-    # wiki_article = this.
     @article = Article.new(
                           user_id: current_user.id,
-                          article_title: wiki_article.title,
-                          url: wiki_article.fullurl,
+                          article_title: params[:article_title],
+                          url: params[:url],
                           publisher: "Wikimedia Foundation, Inc",
                           medium: "Web",
-                          content: wiki_article.text,
-                          image: wiki_article.main_image_url
+                          content: params[:content],
+                          image: params[:image],
+                          summary: params[:sumamry]
                           )
     if @article.save
       flash[:success] = "Article Successfully Saved"
-      redirect_to "/articles"
+      redirect_to "/home"
     else
       flash[:warning] = "Error Saving Article, Please Try Again"
       redirect_to "/articles/#{@article_title}"

@@ -55,13 +55,18 @@ class Article < ApplicationRecord
     articles
   end
 
-  def self.all
-    articles = user_articles
-    articles
-  end
+  # def self.all
+  #   articles = user_articles
+  #   articles
+  # end
 
-  def self.create(title)
-    wiki_article = Wikipedia.find(title)
+  # def self.create(title)
+  #   wiki_article = Wikipedia.find(title)
+  # end
+  def self.edited_content(string)
+    new_text = string.gsub(/(== ==|==)/, "<br />")
+    p "NEW TEXT #{new_text}"
+    new_text
   end
 
   def self.find(title)
@@ -69,13 +74,15 @@ class Article < ApplicationRecord
     # p title
     wiki_article = Wikipedia.find(title)
 
+    wiki_content = edited_content(wiki_article.sanitized_content)
     article = Article.new(
                           article_title: wiki_article.title,
                           url: wiki_article.fullurl,
                           publisher: "Wikimedia Foundation, Inc",
                           medium: "Web",
-                          content: wiki_article.text,
-                          image: wiki_article.main_image_url
+                          content: wiki_content,
+                          image: wiki_article.main_image_url,
+                          summary: wiki_article.summary
                           )
     article
   end

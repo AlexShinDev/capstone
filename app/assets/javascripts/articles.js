@@ -19,7 +19,7 @@ Grabber.Selector.getSelected = function() {
 
 Grabber.Selector.mouseup = function(){
   var st = Grabber.Selector.getSelected();
-  if(st!=''){
+  if (st! = '') {
     alert("You selected:\n" + st);
   }
 };
