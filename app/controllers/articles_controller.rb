@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(
                           user_id: current_user.id,
+                          id: params[:id],
                           article_title: params[:article_title],
                           url: params[:url],
                           publisher: "Wikimedia Foundation, Inc",
@@ -21,14 +22,23 @@ class ArticlesController < ApplicationController
                           )
     if @article.save
       flash[:success] = "Article Successfully Saved"
-      redirect_to "/home"
+      redirect_to "/articles/user_article/#{@article.id}"
     else
       flash[:warning] = "Error Saving Article, Please Try Again"
       redirect_to "/articles/#{@article_title}"
     end
   end
   
+  def lookup
+    # if ikipedia.find(params[:id])
+    #   @article = Article.find(params[:id])
+    # else
+      @article = Article.wiki_find(params[:article_title])
+    # end
+
+  end
+
   def show
-    @article = Article.find(params[:article_title])
+    @article = Article.find(params[:id])
   end
 end

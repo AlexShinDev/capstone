@@ -1,13 +1,29 @@
-<h3><a href="<%= @article.url %>"><%= @article.article_title %></a></h3>
-<div>
-  <p><%= @article.content.html_safe %></p>
-</div>
+<div class="container">
+  <div class="row article-highlight-spacing">
+    <div id="article_show" class="col-md-7 article-outline-show">
+      <h3><a href="<%= @article.url %>"><%= @article.article_title %></a></h3>
+      <div>
+        <p><%= @article.content.html_safe %></p>
+      </div>
+    </div>
 
-<%= form_tag '/articles', method: :post do%>
-  <%= hidden_field_tag :article_title, @article.article_title %>
-  <%= hidden_field_tag :url, @article.url %>
-  <%= hidden_field_tag :content, @article.content %>
-  <%= hidden_field_tag :image, @article.image %>
-  <%= hidden_field_tag :summary, @article.summary %>
-  <%= submit_tag 'Save Article', class: "btn btn-primary"%>
-<% end %>
+    <div class="col-md-4 highlight-outline">
+      <h3 id="header-text">Highlights</h3>
+      <div id="scroll-highlights">
+        <div>
+          <span id="selection"></span>
+          <span hidden id="showUserId"><%= current_user.id %></span>
+          <span hidden id="showArticleId"><%= @article.id %></span>
+          <button onclick="multiFunction()" class="btn btn-primary">Save Highlight</button>
+          <!-- should auto update highlight when you click "Save Highlight" button -->
+        </div>
+        <% @article.highlights.each do |highlight| %>
+          <div >
+            <p id="show-highlights"><%= highlight.selection %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,11 +1,11 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-if (!window.Grabber) {
-  Grabber = {};
+if (!window.Dog) {
+  Dog = {};
 }
 
-Grabber.Selector = {};
-Grabber.Selector.getSelected = function() {
+Dog.Selector = {};
+Dog.Selector.getSelected = function() {
   var t = '';
   if (window.getSelection) {
     t = window.getSelection();
@@ -17,13 +17,60 @@ Grabber.Selector.getSelected = function() {
   return t;
 };
 
-Grabber.Selector.mouseup = function(){
-  var st = Grabber.Selector.getSelected();
-  if (st! = '') {
-    alert("You selected:\n" + st);
+Dog.Selector.mouseup = function() {
+  var st = Dog.Selector.getSelected();
+  if (st != '') {
+    //let obj = { "selction": st};
+    //var myJSON = JSON.stringify(obj);
+    document.getElementById("selection").innerHTML = st;
   }
 };
 
+
+
 $ (document).ready(function() {
-  $ (document).bind("mouseup", Grabber.Selector.mouseup);
+  $ (document).bind("mouseup", Dog.Selector.mouseup);
 });
+
+function multiFunction() {
+  sendHighlight();
+  getHighlights();
+}
+
+function sendHighlight() {
+  let highlightSelection = document.getElementById('selection').innerHTML;
+  let userId = parseInt(document.getElementById('showUserId').innerHTML);
+  let articleId = parseInt(document.getElementById('showArticleId').innerHTML);
+
+  $.post(
+        "http://localhost:3000/highlights",
+        {
+          selection: highlightSelection,
+          user_id: userId,
+          article_id: articleId
+        }
+  );
+  document.getElementById("selection").innerHTML = "highlight has been saved";
+}
+
+function getHighlights() {
+  $.get(
+        "http://localhost:3000/highlights"
+        );
+}
+
+//--------
+// document.addEventListener("mouseup", Dog.Selector.mouseup);
+
+// possibly bind the event to a toggle so that it only works for certain areas of the page
+//alternatively maybe use css to just trigger the event on to certain tags
+
+//window.getSelection().toString()
+
+/// Don't need to use vue necessarily, might be overkill
+//--------
+// let highlightedText = document.getElementsByClassName(".articleContent");
+// document.addEventListener("mouseup", highlightedText.Selector.mouseup);
+
+
+
