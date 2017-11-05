@@ -72,6 +72,7 @@ class Article < ApplicationRecord
   def self.wiki_find(title)
     # title = title.gsub(/%/, ' ')
     # p title
+    # reutrn json formated data need to mess with ruby code
     wiki_article = Wikipedia.find(title)
 
     wiki_content = edited_content(wiki_article.sanitized_content)
@@ -85,6 +86,21 @@ class Article < ApplicationRecord
                           summary: wiki_article.summary
                           )
     article
+  end
+
+  def self.chrome_find(title)
+    wiki_article = Wikipedia.find(title)
+    wiki_content = edited_content(wiki_article.sanitized_content)
+    @article = Article.new(
+                          user_id: 1,
+                          article_title: wiki_article.title,
+                          url: wiki_article.fullurl,
+                          publisher: "Wikimedia Foundation, Inc",
+                          medium: "Web",
+                          content: wiki_content,
+                          image: wiki_article.main_image_url,
+                          summary: wiki_article.summary
+                          )
   end
 
 end

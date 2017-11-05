@@ -26,15 +26,13 @@ Dog.Selector.mouseup = function() {
   }
 };
 
-
-
 $ (document).ready(function() {
   $ (document).bind("mouseup", Dog.Selector.mouseup);
 });
 
 function multiFunction() {
   sendHighlight();
-  getHighlights();
+  updateHighlights();
 }
 
 function sendHighlight() {
@@ -53,11 +51,30 @@ function sendHighlight() {
   document.getElementById("selection").innerHTML = "highlight has been saved";
 }
 
-function getHighlights() {
-  $.get(
-        "http://localhost:3000/highlights"
-        );
+function updateHighlights() {
+  $(function(){
+    location.reload();
+  });
 }
+
+$(document).ready(function() {
+  var processedUri = "Soccer%20(disambiguation)";
+
+  // $('#sendInfo').on('click', function() {
+  //   $.get(
+  //       "http://localhost:3000/articles/" + processedUri
+  //   )
+  // });
+
+  $.get( "http://localhost:3000/articles/" + processedUri)
+  .done(function(resp) {
+    console.log("success response:", resp);
+  })
+  .fail(function(resp) {
+    console.log("error response:", resp);
+  });
+});
+
 
 //--------
 // document.addEventListener("mouseup", Dog.Selector.mouseup);

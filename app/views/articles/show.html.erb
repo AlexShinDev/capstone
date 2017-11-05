@@ -4,6 +4,7 @@
       <h3><a href="<%= @article.url %>"><%= @article.article_title %></a></h3>
       <div>
         <p><%= @article.content.html_safe %></p>
+         <%= link_to "Delete Article", "/articles/#{ @article.id }", method: :delete, class: "btn btn-danger"%>
       </div>
     </div>
 
@@ -17,11 +18,14 @@
           <button onclick="multiFunction()" class="btn btn-primary">Save Highlight</button>
           <!-- should auto update highlight when you click "Save Highlight" button -->
         </div>
-        <% @article.highlights.each do |highlight| %>
-          <div >
-            <p id="show-highlights"><%= highlight.selection %></p>
-          </div>
-        <% end %>
+        <div id="refreshHighlights">
+          <% @article.highlights.reverse_each do |highlight| %>
+            <div>
+              <p id="show-highlights"><%= highlight.selection %> <%= link_to " ", "/highlights/#{ highlight.id }", method: :delete, class: "glyphicon glyphicon-trash"%></p>
+
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
 

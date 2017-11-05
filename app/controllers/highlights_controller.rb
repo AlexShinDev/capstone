@@ -17,4 +17,12 @@ class HighlightsController < ApplicationController
       redirect_to "/home"
     end
   end
+
+  def destroy
+    highlight = Highlight.find(params[:id])
+
+      highlight.destroy
+    # if 
+    #   redirect_to '/'
+  end
 end

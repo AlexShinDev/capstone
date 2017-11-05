@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   post '/articles' => 'articles#create'
   get '/articles/:article_title' => 'articles#lookup'
   get '/articles/user_article/:id' => 'articles#show'
-
+  delete '/articles/:id' => 'articles#destroy'
+  get '/articles/chrome_extension/:article_title' => 'articles#lookup_create_chrome'
 
 
   get '/highlights' => 'highlights#index'
   post '/highlights' => 'highlights#create'
+  delete '/highilghts' => 'highlights#destroy'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'

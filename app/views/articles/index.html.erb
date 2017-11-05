@@ -24,6 +24,7 @@
             </div> -->
             <div class="desc">
               <h3><a href="/articles/user_article/<%= article.id %>"><%= article.article_title %></a></h3>
+              <%= link_to "Delete Article", "/articles/#{ article.id }", method: :delete, class: "btn btn-danger"%>
             </div>
           </div>
         <% end %>
