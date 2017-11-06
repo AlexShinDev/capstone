@@ -20,8 +20,6 @@ Dog.Selector.getSelected = function() {
 Dog.Selector.mouseup = function() {
   var st = Dog.Selector.getSelected();
   if (st != '') {
-    //let obj = { "selction": st};
-    //var myJSON = JSON.stringify(obj);
     document.getElementById("selection").innerHTML = st;
   }
 };
@@ -41,7 +39,7 @@ function sendHighlight() {
   let articleId = parseInt(document.getElementById('showArticleId').innerHTML);
 
   $.post(
-        "http://localhost:3000/highlights",
+        "http://localhost:3000/api/v1/highlights",
         {
           selection: highlightSelection,
           user_id: userId,
@@ -56,38 +54,4 @@ function updateHighlights() {
     location.reload();
   });
 }
-
-$(document).ready(function() {
-  var processedUri = "Soccer%20(disambiguation)";
-
-  // $('#sendInfo').on('click', function() {
-  //   $.get(
-  //       "http://localhost:3000/articles/" + processedUri
-  //   )
-  // });
-
-  $.get( "http://localhost:3000/articles/" + processedUri)
-  .done(function(resp) {
-    console.log("success response:", resp);
-  })
-  .fail(function(resp) {
-    console.log("error response:", resp);
-  });
-});
-
-
-//--------
-// document.addEventListener("mouseup", Dog.Selector.mouseup);
-
-// possibly bind the event to a toggle so that it only works for certain areas of the page
-//alternatively maybe use css to just trigger the event on to certain tags
-
-//window.getSelection().toString()
-
-/// Don't need to use vue necessarily, might be overkill
-//--------
-// let highlightedText = document.getElementsByClassName(".articleContent");
-// document.addEventListener("mouseup", highlightedText.Selector.mouseup);
-
-
 

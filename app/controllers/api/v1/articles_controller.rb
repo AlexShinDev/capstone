@@ -1,5 +1,5 @@
 require 'wikipedia'
-class ArticlesController < ApplicationController
+class Api::V1::ArticlesController < ApplicationController
   def home
     @articles = Article.rand_articles
   end
@@ -23,27 +23,20 @@ class ArticlesController < ApplicationController
                             )
       if @article.save
         flash[:success] = "Article Successfully Saved"
-        redirect_to "/articles/user_article/#{@article.id}"
+        redirect_to "/api/v1/articles/user_article/#{@article.id}"
       else
         flash[:warning] = "Error Saving Article, Please Try Again"
-        redirect_to "/articles/#{@article_title}"
+        redirect_to "/api/v1/articles/#{@article_title}"
       end
       # not a typo.
     else
       flash[:warning] = "You need to be logged in to save an article"
-      redirect_to "/login"
+      redirect_to "/api/v1/login"
     end
   end
   
   def lookup
-    # if ikipedia.find(params[:id])
-    #   @article = Article.find(params[:id])
-    # else
-
       @article = Article.wiki_find(params[:article_title])
-    # end
-
-
   end
 
   def show
@@ -54,22 +47,7 @@ class ArticlesController < ApplicationController
     article = Article.find(params[:id])
 
     article.destroy
-    redirect_to '/articles'
-  end
-
-  def lookup_create_chrome
-    article = Article.find_or_create_by(article_title: params[:article_title], user_id: params[:user_id])
-
-
-    selection = 
-
-# find or create by
-    
-    # if article.save
-    #   p "SUCCESS"
-    # else
-    #   p "FAIL"
-    # end
+    redirect_to '/api/v1/articles'
   end
 
   def contact

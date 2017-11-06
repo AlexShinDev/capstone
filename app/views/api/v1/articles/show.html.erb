@@ -4,7 +4,7 @@
       <h3><a href="<%= @article.url %>"><%= @article.article_title %></a></h3>
       <div>
         <p><%= @article.content.html_safe %></p>
-         <%= link_to "Delete Article", "/articles/#{ @article.id }", method: :delete, class: "btn btn-danger"%>
+         <%= link_to "Delete Article", "/api/v1/articles/#{ @article.id }", method: :delete, class: "btn btn-danger"%>
       </div>
     </div>
 
@@ -21,7 +21,7 @@
         <div id="refreshHighlights">
           <% @article.highlights.reverse_each do |highlight| %>
             <div>
-              <p id="show-highlights"><%= highlight.selection %> <%= link_to " ", "/highlights/#{ highlight.id }", method: :delete, class: "glyphicon glyphicon-trash"%></p>
+              <p id="show-highlights"><%= highlight.selection %> <%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :delete, class: "glyphicon glyphicon-trash"%></p>
 
             </div>
           <% end %>
