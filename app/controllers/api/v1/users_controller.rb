@@ -13,10 +13,14 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id 
       flash[:success] = "Successfully created account"
-      redirect_to '/'
+      redirect_to '/api/v1/'
     else
       flash[:warning] = "Invalid email or password!"
-      redirect_to '/signup'
+      redirect_to '/api/v1/signup'
     end
+  end
+
+  def show
+    @user = current_user
   end
 end

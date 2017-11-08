@@ -59,7 +59,7 @@ class Article < ApplicationRecord
     # reutrn json formated data need to mess with ruby code
     wiki_article = Wikipedia.find(title)
 
-    wiki_content = edited_content(wiki_article.sanitized_content)
+    wiki_content = wiki_article.sanitized_content.gsub(/(== ==|==)/, "<br />")
     article = Article.new(
                           article_title: wiki_article.title,
                           url: wiki_article.fullurl,

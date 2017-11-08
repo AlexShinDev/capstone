@@ -1,7 +1,7 @@
 require 'wikipedia'
 class Api::V1::ArticlesController < ApplicationController
   def home
-    @articles = Article.rand_articles
+    # @articles = Article.rand_articles
   end
   
   def index

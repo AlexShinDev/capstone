@@ -82,14 +82,13 @@
   <div id="fh5co-wrapper">
   <div id="fh5co-page">
   <div id="fh5co-header">
-    <header id="fh5co-header-section">
-      <div class="container">
+       <div class="container">
         <div class="nav-header">
           <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
           <h1 id="fh5co-logo"><a href="/api/v1/home">Academia</a></h1>
           <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
-              <li><a class="active" href="/">Home</a></li>
+              <li><a class="active" href="/api/v1/">Home</a></li>
               <li>
                 <% if current_user %>
                   <a href="/api/v1/logout" class="fh5co-sub-ddown">User</a>
@@ -107,8 +106,8 @@
               </li>
               <% if current_user %>
                 <li><a href="/api/v1/articles">Articles</a></li>
+                <li><a href="/api/v1/highlights">Highlights</a></li>
               <% end %>
-              <li><a href="/api/v1/highlights">Highlights</a></li>
               <li><a href="/api/v1/contact">Contact</a></li>
             </ul>
           </nav>
@@ -116,8 +115,9 @@
       </div>
     </header>
   </div>
-  <aside id="fh5co-hero" style="background-image: url(/images/slider3.jpg); height: 85px;">
+  <aside  style="background-color: #FF7457; height: 85px;" >
   </aside>
+  <!--url(/images/slider3.jpg); height: 85px;"-->
 
   <!-- end:fh5co-header -->
 
@@ -138,31 +138,13 @@
               <h3>Company</h3>
               <ul class="link">
                 <li><a href="#">About Us</a></li>
-                <li><a href="#">Hotels</a></li>
-                <li><a href="#">Customer Care</a></li>
-                <li><a href="#">Contact Us</a></li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <h3>Our Facilities</h3>
-              <ul class="link">
-                <li><a href="#">Resturant</a></li>
-                <li><a href="#">Bars</a></li>
-                <li><a href="#">Pick-up</a></li>
-                <li><a href="#">Swimming Pool</a></li>
-                <li><a href="#">Spa</a></li>
-                <li><a href="#">Gym</a></li>
+                <li><a href="#">Articles</a></li>
+                <li><a href="/api/v1/contact">Contact Us</a></li>
               </ul>
             </div>
             <div class="col-md-6">
-              <h3>Subscribe</h3>
-              <p>Sed cursus ut nibh in semper. Mauris varius et magna in fermentum. </p>
-              <form action="#" id="form-subscribe">
-                <div class="form-field">
-                  <input type="email" placeholder="Email Address" id="email">
-                  <input type="submit" id="submit" value="Send">
-                </div>
-              </form>
+              <h3>Contact Me</h3>
+              <p>xashinx@gmail.com</p>
             </div>
           </div>
         </div>

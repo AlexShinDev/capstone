@@ -1,5 +1,11 @@
-<h1>Highlights</h1>
-<% @highlights.each do |highlight| %>
-  <h3><%= highlight.article_id %></h3>
-  <h4><%= highlight.selection %></h4>
-<% end %>
+<div class="container" id="search-div">
+  <div class="row">
+    <h1 id="wikipedia-heading">Wikipedia Search</h1>
+    <div class="col-md-8 col-md-offset-2">
+      <input id="searchTerm" name="search" placeholder="Search..">
+      <button id='search' type="button" class ="btn btn-primary">Submit</button>
+    <a href="https://en.wikipedia.org/wiki/Special:Random" class="btn btn-primary">Random</a>
+    </div>
+    <div id="output" class="col-md-8 col-md-offset-2"></div>
+  </div>
+</div>
