@@ -1,7 +1,6 @@
 require 'wikipedia'
 class Api::V1::ArticlesController < ApplicationController
   def home
-    # @articles = Article.rand_articles
   end
   
   def index
@@ -12,7 +11,6 @@ class Api::V1::ArticlesController < ApplicationController
     if current_user
       @article = Article.new(
                             user_id: current_user.id,
-                            # id: params[:id],#Why do I need params?
                             article_title: params[:article_title],
                             url: params[:url],
                             publisher: "Wikimedia Foundation, Inc",
@@ -36,7 +34,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
   
   def lookup
-      @article = Article.wiki_find(params[:article_title])
+    @article = Article.wiki_find(params[:article_title])
   end
 
   def show
@@ -46,8 +44,10 @@ class Api::V1::ArticlesController < ApplicationController
   def destroy
     article = Article.find(params[:id])
 
-    article.destroy
-    redirect_to '/api/v1/articles'
+    if article.destroy
+      article.highlights.destroy_all
+      redirect_to '/api/v1/articles'
+    end
   end
 
   def contact

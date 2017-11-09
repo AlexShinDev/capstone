@@ -20,18 +20,17 @@ Dog.Selector.getSelected = function() {
 Dog.Selector.mouseup = function() {
   var st = Dog.Selector.getSelected();
   if (st != '') {
-    document.getElementById("selection").innerHTML = st;
+    let badSelectionReg = new RegExp("\\w*?"+st+"\\w*", "g");
+    let articleContent = document.getElementById("article-content").innerHTML;
+    let myArray = articleContent.match(badSelectionReg);
+    st = myArray[0];
+    document.getElementById("selection").innerHTML = st; 
   }
 };
 
 $ (document).ready(function() {
   $ (document).bind("mouseup", Dog.Selector.mouseup);
 });
-
-function multiFunction() {
-  sendHighlight();
-  updateHighlights();
-}
 
 function sendHighlight() {
   let highlightSelection = document.getElementById('selection').innerHTML;
@@ -44,14 +43,10 @@ function sendHighlight() {
           selection: highlightSelection,
           user_id: userId,
           article_id: articleId
+        },
+        function() {
+          $( "#refreshHighlights" ).load(window.location.href + " #refreshHighlights" );
         }
   );
   document.getElementById("selection").innerHTML = "highlight has been saved";
 }
-
-function updateHighlights() {
-  $(function(){
-    location.reload();
-  });
-}
-

@@ -1,0 +1,13 @@
+update highlights
+  - click update
+  - will auto highlight selection
+  - rehighlight for update
+  - click to fully update
+
+compline info into project model
+  - create routes, controller, view for project
+  - create model
+send to email
+  - send project to email
+
+possible to convert to pdf

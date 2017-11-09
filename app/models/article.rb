@@ -19,14 +19,8 @@ class Article < ApplicationRecord
   end
 
   def generatebib
-    @biblio = []
-    @biblio << author
-    @biblio << article_title
-    @biblio << publisher
-    @biblio << date_published
-    @biblio << medium
-    @biblio << url
-    @biblio.join(". ")
+    sanitized_created_at = created_at.strftime("%d %B %Y")
+    @biblio = "#{article_title}. 'Wikipedia: The Free Encyclopedia'. #{publisher}. #{medium}. #{sanitized_created_at}"
   end
 
   def self.rand_articles

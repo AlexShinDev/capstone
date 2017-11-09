@@ -17,16 +17,12 @@ class Api::V1::HighlightsController < ApplicationController
   end
 
   def destroy
-    p "*** DELETE ***"
     highlight = Highlight.find(params[:id])
-
     highlight.destroy
   end
 
   def api_find_create
-    p "API FIND CREATE"
    article = Article.find_or_create_by!(article_title: params[:article_title], user_id: 1)
-# , user_id: params[:user_id]
    Highlight.create(
                   selection: params[:selection],
                   article_id: article.id,
