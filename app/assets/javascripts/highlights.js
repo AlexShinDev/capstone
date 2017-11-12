@@ -1,4 +1,4 @@
-
+let content = "";
 $(function() {
   // enter
   $("#searchTerm").keypress(function(e){
@@ -43,3 +43,23 @@ $(function() {
   });
 // random article
 });
+
+$(function() {
+  $(".refresh").on("click", function() {
+    setTimeout(function(){ 
+      $( "#refreshHighlights" ).load(window.location.href + " #refreshHighlights" ); }, 2000);
+  });
+});
+// $(function() {
+//   content = document.getElementById("article-content").textContent;
+// });
+// $(function() {
+//   $('#searchForSelection').on('click', function() {
+//     document.getElementById("article-content").innerHTML = content;
+//     // console.log(content);
+//     console.log($('#selection-highlight').text());
+//     $('#article-content').each(function() {
+//       $(this).html($(this).html().replace($('#selection-highlight').val(),"<span class = 'highlight'>"+$('#selection-highlight').text()+"</span>"));
+//     });
+//   });
+// });

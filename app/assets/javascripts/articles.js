@@ -18,11 +18,13 @@ Dog.Selector.getSelected = function() {
 };
 
 Dog.Selector.mouseup = function() {
-  var st = Dog.Selector.getSelected();
+  let st = Dog.Selector.getSelected();
   if (st != '') {
-    let badSelectionReg = new RegExp("\\w*?"+st+"\\w*", "g");
+    let string = st.toString().replace(/\(/g, "\\(");
+    string = string.replace(/\)/g, "\\)");
+    let myRe = new RegExp("\\w*?" + string + "\\w*", "g");
     let articleContent = document.getElementById("article-content").innerHTML;
-    let myArray = articleContent.match(badSelectionReg);
+    let myArray = articleContent.match(myRe);
     st = myArray[0];
     document.getElementById("selection").innerHTML = st; 
   }
@@ -46,7 +48,19 @@ function sendHighlight() {
         },
         function() {
           $( "#refreshHighlights" ).load(window.location.href + " #refreshHighlights" );
-        }
-  );
+        });
   document.getElementById("selection").innerHTML = "highlight has been saved";
 }
+
+// $(function() {
+//   content = document.getElementById("searchable").textContent;
+// });
+// $(function() {
+//   $('#searchForSelection').on('click', function() {
+//     document.getElementById("searchable").innerHTML = content;
+//     console.log(content);
+//     $('#searchable').each(function() {
+//       $(this).html($(this).html().replace($('#selection-highlight').val(),"<span class='highlight'>" + $('#selection-highlight').val() + "</span>"));
+//     });
+//   });
+// });

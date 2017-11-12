@@ -27,8 +27,8 @@
         <div id="refreshHighlights">
           <% @article.highlights.reverse_each do |highlight| %>
             <div>
-              <p id="show-highlights"><%= highlight.selection %> <%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :delete, class: "glyphicon glyphicon-trash"%></p>
-
+              <p id="show-highlights"><span id="selection-highlight"><%= highlight.selection %></span>
+                <span id="refresh"><%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :delete, class: "refresh glyphicon glyphicon-trash"%> <%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :patch, class: "updateHighlight glyphicon glyphicon-wrench"%></span></p>
             </div>
           <% end %>
         </div>

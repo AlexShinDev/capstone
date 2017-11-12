@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get '/highlights' => 'highlights#index'
       post '/highlights' => 'highlights#create'
       post '/highlights/extension/:article_title' => 'highlights#api_find_create'
+      patch '/highlights/:id' => 'highlights#update'
       delete '/highlights/:id' => 'highlights#destroy'
 
       get '/signup' => 'users#new'

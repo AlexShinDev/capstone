@@ -4,8 +4,6 @@ class HighlightsController < ApplicationController
   end
 
   def create
-
-    #current_user id in html send with ajax
     @highlight = Highlight.new(
                               selection: params[:selection],
                               user_id: params[:user_id],
@@ -16,6 +14,14 @@ class HighlightsController < ApplicationController
     else
       redirect_to "/home"
     end
+  end
+
+  def update
+    @highlight = Highlight.find(params[:id])
+    @highlight = Highlight.assign_attributes(
+                                            selection: params[:selection]
+                                            )
+    @highlight.save
   end
 
   def destroy

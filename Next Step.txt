@@ -1,8 +1,9 @@
-update highlights
-  - click update
-  - will auto highlight selection
-  - rehighlight for update
-  - click to fully update
+find selection
+  - click find selection
+  - will highlight and scroll down to selection
+update selection
+  - same as create highlight.
+  - highlight then press update and it will patch the selection
 
 compline info into project model
   - create routes, controller, view for project
@@ -11,3 +12,5 @@ send to email
   - send project to email
 
 possible to convert to pdf
+
+http://jsfiddle.net/2doLb21s/1/
