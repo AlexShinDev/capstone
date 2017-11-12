@@ -19,7 +19,7 @@ class Api::V1::HighlightsController < ApplicationController
   def destroy
     highlight = Highlight.find(params[:id])
     highlight.destroy
-    # redirect_to "/api/v1/articles/user_article/#{highlight.article_id}"
+    redirect_to "/api/v1/articles/user_article/#{highlight.article_id}"
   end
 
   def api_find_create
