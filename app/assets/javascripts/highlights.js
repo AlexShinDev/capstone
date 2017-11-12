@@ -46,20 +46,48 @@ $(function() {
 
 $(function() {
   $(".refresh").on("click", function() {
-    setTimeout(function(){ 
-      $( "#refreshHighlights" ).load(window.location.href + " #refreshHighlights" ); }, 2000);
+    console.log("orange");
+    $( "#refreshHighlights" ).load(window.location.href + " #refreshHighlights" ); 
+
+    console.log("orange");
   });
 });
-// $(function() {
-//   content = document.getElementById("article-content").textContent;
-// });
-// $(function() {
-//   $('#searchForSelection').on('click', function() {
-//     document.getElementById("article-content").innerHTML = content;
-//     // console.log(content);
-//     console.log($('#selection-highlight').text());
-//     $('#article-content').each(function() {
-//       $(this).html($(this).html().replace($('#selection-highlight').val(),"<span class = 'highlight'>"+$('#selection-highlight').text()+"</span>"));
-//     });
-//   });
-// });
+
+
+let openingSpan = '<span class="highlight">';
+let closingSpan = '</span>';
+let selectedHighlight = "";
+
+function removeHighlight() {
+  let articleDiv = document.querySelector("#article-content");
+  let articleContent = articleDiv.innerHTML;
+  let openSpanPosition = articleContent.indexOf(openingSpan);
+  let closingSpanPosition = articleContent.indexOf(closingSpan);
+  selectedHighlight = articleContent.slice(openSpanPosition + openingSpan.length, closingSpanPosition);
+  if (articleContent.includes(openingSpan)) {
+    let replaceContent = articleContent.slice(0, openSpanPosition) + articleContent.slice(openSpanPosition + openingSpan.length, closingSpanPosition) + articleContent.slice(closingSpanPosition + closingSpan.length);
+    articleDiv.innerHTML = replaceContent; 
+  }
+
+}
+
+function addHighlight(selectedText) {
+
+  removeHighlight();
+
+  let articleDiv = document.querySelector("#article-content");
+  let articleContent = articleDiv.innerHTML;
+  let firstMarker = articleContent.indexOf(selectedText);
+  let secondMarker = firstMarker + selectedText.length;
+  if (selectedHighlight === articleContent.slice(firstMarker, secondMarker)) {
+    let replaceContent = articleContent.replace(openingSpan, "<span>");
+    articleDiv.innerHTML = replaceContent; 
+  } else {
+    articleDiv.innerHTML = articleContent.slice(0, firstMarker) + openingSpan + articleContent.slice(firstMarker, secondMarker) + closingSpan + articleContent.slice(secondMarker);
+    $('html, body').animate({
+      scrollTop: $(".highlight").offset().top - $(".highlight").height() * 2
+    }, 1000);
+  }
+}
+
+// 

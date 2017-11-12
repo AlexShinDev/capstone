@@ -10,8 +10,8 @@
       <h3><a href="<%= @article.url %>"><%= @article.article_title %></a></h3>
       <div id="article-content">
         <p><%= @article.content.html_safe %></p>
-         <%= link_to "Delete Article", "/api/v1/articles/#{ @article.id }", method: :delete, class: "btn btn-danger"%>
       </div>
+         <%= link_to "Delete Article", "/api/v1/articles/#{ @article.id }", method: :delete, class: "btn btn-danger"%>
     </div>
 
     <div class="col-md-4 highlight-outline">
@@ -28,7 +28,9 @@
           <% @article.highlights.reverse_each do |highlight| %>
             <div>
               <p id="show-highlights"><span id="selection-highlight"><%= highlight.selection %></span>
-                <span id="refresh"><%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :delete, class: "refresh glyphicon glyphicon-trash"%> <%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :patch, class: "updateHighlight glyphicon glyphicon-wrench"%></span></p>
+                <span><%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :delete, class: "refresh glyphicon glyphicon-trash"%> <%= link_to " ", "/api/v1/highlights/#{ highlight.id }", method: :patch, class: "updateHighlight glyphicon glyphicon-wrench"%></span>
+                <a onclick="addHighlight('<%= highlight.selection %>')" class="glyphicon glyphicon-search"></a>
+              </p>
             </div>
           <% end %>
         </div>

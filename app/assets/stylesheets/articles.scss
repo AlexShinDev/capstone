@@ -34,11 +34,6 @@
   padding: 30px 0;
 }
 
-.highlight-outline {
-  border-style: solid;
-  border-width: 1px;
-}
-
 .article-outline {
   border-style: solid;
   border-width: 1px;
@@ -48,6 +43,7 @@
   border-style: solid;
   border-width: 1px;
   margin-right: 50px;
+  overflow-x: hidden;
 }
 
 #scroll-highlights {
